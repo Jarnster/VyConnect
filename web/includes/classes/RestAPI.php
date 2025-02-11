@@ -4,7 +4,7 @@ class RestAPI
 {
     protected bool $curl_debugging = false;
     protected bool $disable_ssl_verify = false;
-    private string $restURL;
+    protected string $restURL;
     private $ch;
     private $response;
 
@@ -67,8 +67,51 @@ class RestAPI
         return $this->response;
     }
 
+    public function save_config_file()
+    {
+        // Variables bound to this request
+        $endpoint = $this->restURL . "/config-file";
+        $req_data = json_encode(["op" => "save", "path" => []]);
+
+
+        $this->ch = curl_init();
+
+        if ($this->curl_debugging) {
+            curl_setopt($this->ch, CURLOPT_VERBOSE, true);
+        }
+
+        if ($this->disable_ssl_verify) {
+            curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
+
+        curl_setopt($this->ch, CURLOPT_URL, $endpoint);
+        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->ch, CURLOPT_HTTPHEADER, ["Content-Type: multipart/form-data"]);
+        curl_setopt($this->ch, CURLOPT_POST, true);
+
+        // JSON in multipart/form-data
+        curl_setopt($this->ch, CURLOPT_POSTFIELDS, [
+            "data" => $req_data,
+            "key" => "plaintxt"
+        ]);
+
+        $this->response = curl_exec($this->ch);
+
+        if (curl_errno($this->ch)) {
+            if ($this->curl_debugging == true) {
+                echo "cURL Error: " . curl_error($this->ch);
+            }
+        }
+
+        curl_close($this->ch);
+        $_SESSION['pendingChanges'] = false;
+        return $this->response;
+    }
+
     public function update_interface($interface_name, $data)
     {
+        // Variables bound to this request
         $endpoint = $this->restURL . "/configure";
 
         $commands = [];
@@ -115,6 +158,7 @@ class RestAPI
         }
 
         curl_close($this->ch);
+        $_SESSION['pendingChanges'] = true;
         return $this->response;
     }
 }

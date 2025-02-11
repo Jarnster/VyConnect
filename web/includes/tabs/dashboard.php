@@ -7,8 +7,6 @@
     <div class="widget">
         <h2>Quick Overview</h2>
         <?php
-        require 'includes/classes/RestAPI.php';
-
         $Rest = new RestAPI($REST_BASE_URL);
 
         $runningConfiguration = $Rest->retrieve();

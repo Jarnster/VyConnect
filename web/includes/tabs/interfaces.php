@@ -1,7 +1,5 @@
 <?php
 if (isset($_POST['save']) && isset($_POST['interface_name'])) {
-    require 'includes/classes/RestAPI.php';
-
     $Rest = new RestAPI($REST_BASE_URL);
 
     $interface_name = htmlspecialchars($_POST['interface_name']);
@@ -83,8 +81,6 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
     </thead>
     <tbody>
         <?php
-        require 'includes/classes/RestAPI.php';
-
         $Rest = new RestAPI($REST_BASE_URL);
 
         $runningConfiguration = $Rest->retrieve();
@@ -96,7 +92,6 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
 
 
         foreach ($ethernet_interfaces as $interface_name => $interface) {
-            // Maak een JSON-encoded string van het object en escape het correct
             $interface_json = htmlspecialchars(json_encode([
                 "name" => $interface_name,
                 "description" => $interface->description,

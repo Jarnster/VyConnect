@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require_once 'includes/classes/RestAPI.php';
 session_start();
 
 // Check if the user is logged in and if the session hash matches
