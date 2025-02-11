@@ -12,6 +12,6 @@ https://docs.vyos.io/en/equuleus/automation/vyos-api.html#show
 https://docs.vyos.io/en/latest/configuration/service/https.html
 
 
-⚠️ Make sure /config is not accessible to end-users when webhosting 
+⚠️ Make sure to copy "default.config.json" to "config.json" and put in your desired configuration values!
 
 Default pass: vyconnect
