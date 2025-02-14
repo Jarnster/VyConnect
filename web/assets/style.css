@@ -34,9 +34,17 @@ select {
 }
 
 .alert {
-    background: orange;
+    background: rgb(7, 64, 105);
     color: whitesmoke;
     padding: 15px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, grey, transparent);
+    box-shadow: 0 0 5px rgba(128, 128, 128, 0.5);
+    margin: 20px 0; /* Extra room at topside and downside */
 }
 
 .sidebar {
