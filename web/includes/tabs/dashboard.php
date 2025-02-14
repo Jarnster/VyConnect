@@ -7,7 +7,7 @@
     <div class="widget">
         <h2>Quick Overview</h2>
         <?php
-        $Rest = new RestAPI($REST_BASE_URL);
+        $Rest = new RestAPI();
 
         $runningConfiguration = $Rest->retrieve();
         $runningConfiguration = json_decode($runningConfiguration);

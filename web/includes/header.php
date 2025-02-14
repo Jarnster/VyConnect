@@ -19,7 +19,7 @@ if (!password_verify($ADMIN_PWD, $_SESSION['loginhash'])) {
     exit("You need to login again.");
 }
 ?>
-<title>VyConnect - Local UI</title>
+<title>VyConnect - Controller UI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 <link rel="stylesheet" href="assets/style.css">

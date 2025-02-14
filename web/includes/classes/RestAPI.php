@@ -8,11 +8,17 @@ class RestAPI
     private $ch;
     private $response;
 
-    public function __construct(string $restURL, bool $curl_debugging = false, bool $disable_ssl_verify = false)
+    public function __construct(string $ip = null, bool $curl_debugging = false, bool $disable_ssl_verify = false)
     {
         require 'includes/config.php';
+
+        if ($ip != null) {
+            $this->setURL($ip);
+        } else {
+            $this->setURL(get_selected_router_ip());
+        }
+
         $this->setDebugParameters($curl_debugging, $disable_ssl_verify);
-        $this->setURL($restURL);
     }
 
     protected function setDebugParameters(bool $curl_debugging, bool $disable_ssl_verify)
@@ -21,9 +27,9 @@ class RestAPI
         $this->disable_ssl_verify = $disable_ssl_verify;
     }
 
-    protected function setURL($restURL)
+    protected function setURL(string $ip)
     {
-        $this->restURL = $restURL;
+        $this->restURL = $ip;
     }
 
     public function retrieve()

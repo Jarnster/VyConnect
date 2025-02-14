@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $_SESSION['loginhash'] = $PWD_HASH; // Store the already hashed password in the session
     $_SESSION['pendingChanges'] = false; // Reset pending changes state
+    $_SESSION['routerIndex'] = 0; // Reset current router index
     echo "<p style='color:green;'>Password is correct. Redirecting...</p>";
     header('Location: index.php');
     exit;
@@ -110,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <h2><i class="fa fa-ethernet"></i> VyConnect</h2>
-    <h1>Local UI</h1>
+    <h1>Controller UI</h1>
 
     <?php if (isset($error_message)) : ?>
       <div class="error-message"><?= $error_message ?></div>

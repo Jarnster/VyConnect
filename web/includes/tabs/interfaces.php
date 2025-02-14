@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['save']) && isset($_POST['interface_name'])) {
-    $Rest = new RestAPI($REST_BASE_URL);
+    $Rest = new RestAPI();
 
     $interface_name = htmlspecialchars($_POST['interface_name']);
     $description = htmlspecialchars($_POST['description']);
@@ -81,7 +81,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
     </thead>
     <tbody>
         <?php
-        $Rest = new RestAPI($REST_BASE_URL);
+        $Rest = new RestAPI();
 
         $runningConfiguration = $Rest->retrieve();
         $runningConfiguration = json_decode($runningConfiguration);

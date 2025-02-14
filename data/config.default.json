@@ -2,7 +2,12 @@
     "ADMIN_PWD": "vyconnect",
     "ADMIN_PWD_HASH": null,
     "TZ": "America/New_York",
-    "REST_BASE_URL": "127.0.0.1",
+    "ROUTERS": [
+        {
+            "name": "Local Router 1",
+            "ip": "https://127.0.0.1"
+        }
+    ],
     "WEBHOOK_URL": "",
     "CURL_DEBUGGING": true,
     "DISABLE_SSL_VERIFY": true

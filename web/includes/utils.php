@@ -4,7 +4,7 @@
 if (!function_exists('set_config_pwd_hash')) {
     function set_config_pwd_hash($hash)
     {
-        $config = json_decode(file_get_contents('../data/config.json'), true);
+        $config = json_decode(file_get_contents(filename: '../data/config.json'), true);
         $config["ADMIN_PWD_HASH"] = $hash;
         $json = json_encode($config, JSON_PRETTY_PRINT);
         file_put_contents("../data/config.json", $json);
@@ -38,5 +38,15 @@ if (!function_exists('create_html_interface_state')) {
         } else {
             return "<b style='color:crimson;'><i class='fa fa-stop' style='color:red;'></i> DOWN</b>";
         }
+    }
+}
+
+if (!function_exists('get_selected_router_ip')) {
+    function get_selected_router_ip()
+    {
+        $config = json_decode(file_get_contents(filename: '../data/config.json'), true);
+        $ROUTERS = $config["ROUTERS"];
+        $routerIndex = intval($_SESSION['routerIndex']) ?? 0;
+        return $ROUTERS[$routerIndex or 0]['ip'];
     }
 }

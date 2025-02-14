@@ -6,7 +6,7 @@ $config = json_decode(file_get_contents('../data/config.json'), true);
 // Path and other configurations
 $ADMIN_PWD = $config['ADMIN_PWD'] ?? 'zendns';
 $PWD_HASH = $config['ADMIN_PWD_HASH'] ?? null;
-$REST_BASE_URL =  $config['REST_BASE_URL'] ?? '127.0.0.1'; // Important! - without trailing slash
+$ROUTERS = $config['ROUTERS'];
 $curl_debugging = $config["CURL_DEBUGGING"];
 $disable_ssl_verify = $config["DISABLE_SSL_VERIFY"];
 
