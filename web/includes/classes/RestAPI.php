@@ -34,6 +34,8 @@ class RestAPI
 
     public function retrieve()
     {
+        require 'includes/config.php';
+
         // Variables bound to this request
         $endpoint = $this->restURL . "/retrieve";
         $req_data = json_encode(["op" => "showConfig", "path" => []]);
@@ -58,7 +60,7 @@ class RestAPI
         // JSON in multipart/form-data
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, [
             "data" => $req_data,
-            "key" => "plaintxt"
+            "key" => $API_KEY
         ]);
 
         $this->response = curl_exec($this->ch);
@@ -75,6 +77,8 @@ class RestAPI
 
     public function save_config_file()
     {
+        require 'includes/config.php';
+
         // Variables bound to this request
         $endpoint = $this->restURL . "/config-file";
         $req_data = json_encode(["op" => "save", "path" => []]);
@@ -99,7 +103,7 @@ class RestAPI
         // JSON in multipart/form-data
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, [
             "data" => $req_data,
-            "key" => "plaintxt"
+            "key" => $API_KEY
         ]);
 
         $this->response = curl_exec($this->ch);
@@ -117,6 +121,8 @@ class RestAPI
 
     public function update_interface($interface_name, $data)
     {
+        require 'includes/config.php';
+
         // Variables bound to this request
         $endpoint = $this->restURL . "/configure";
 
@@ -149,7 +155,7 @@ class RestAPI
 
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, [
             "data" => $req_data,
-            "key" => "plaintxt"
+            "key" => $API_KEY
         ]);
 
         $this->response = curl_exec($this->ch);

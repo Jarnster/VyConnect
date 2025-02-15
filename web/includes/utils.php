@@ -45,7 +45,7 @@ if (!function_exists('get_selected_router_ip')) {
     function get_selected_router_ip()
     {
         $config = json_decode(file_get_contents(filename: '../data/config.json'), true);
-        $ROUTERS = $config["ROUTERS"];
+        $ROUTERS = $config["VYOS_ROUTERS"];
         $routerIndex = intval($_SESSION['routerIndex']) ?? 0;
         return $ROUTERS[$routerIndex or 0]['ip'];
     }
