@@ -119,7 +119,7 @@ if (isset($_POST['selectRouterIndex'])) {
                         $statusEmoji = $pingStatus == 'UP' ? '✅' : '❌';
 
                         if ($isActive) {
-                            $routerName .= " (☑️ ACTIVE)";
+                            $routerName .= " (🦺 MANAGING)";
                         }
 
                         echo "<option value='$index' style='color:$pingColor;'>($statusEmoji $pingStatus) $routerName</option>";
