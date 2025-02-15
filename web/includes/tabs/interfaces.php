@@ -38,8 +38,8 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
         <span class="close">&times;</span>
         <h2>Interface Configuration: <b id="interfaceNameDisplay" name="interfaceNameDisplay"></b></h2>
         <form method="post" id="interfaceForm" name="interfaceForm">
-            <label for="description">Interface:</label>
-            <input type="text" id="interface_name" name="interface_name" readonly>
+            <label for="description">Interface (read-only):</label>
+            <input type="text" id="interface_name" name="interface_name" readonly disabled>
 
             <br>
 
@@ -64,11 +64,11 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
             <br>
 
             <label for="macAddress">MAC Address (read-only):</label>
-            <input type="text" id="macAddress" name="macAddress" readonly>
+            <input type="text" id="macAddress" name="macAddress" readonly disabled>
 
             <hr>
 
-            <button type="submit" name="save" class="button"><i class="fa fa-save"></i> Commit Changes</button>
+            <button type="submit" name="save" class="button" style="background:green"><i class="fa fa-upload"></i> Commit Changes</button>
         </form>
     </div>
 </div>

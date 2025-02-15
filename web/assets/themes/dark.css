@@ -30,7 +30,8 @@ select:hover {
 }
 
 input::placeholder,
-select:disabled {
+select:disabled,
+input:disabled {
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -179,7 +180,7 @@ select {
 }
 
 .button:hover {
-    background-color: #3a7ad7;
+    filter: brightness(85%);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -286,11 +287,11 @@ select {
 }
 
 .table tr:nth-child(even) {
-    background-color: #283747;
+    background-color: rgb(52, 52, 54);
 }
 
 .table tr:hover {
-    background-color: #070708;
+    background-color: rgb(27, 27, 28);
 }
 
 .table th {

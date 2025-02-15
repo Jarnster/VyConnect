@@ -106,12 +106,14 @@ if (isset($_POST['save']) && isset($_POST['service_name'])) {
         <span class="close">&times;</span>
         <h2>Service Configuration: <b id="serviceNameDisplay" name="serviceNameDisplay"></b></h2>
         <form method="post" id="serviceForm" name="serviceForm">
-            <label for="service_name">Service:</label>
-            <input type="text" id="service_name" name="service_name" readonly>
+            <label for="service_name">Service (read-oly):</label>
+            <input type="text" id="service_name" name="service_name" readonly disabled>
 
             <div id="configFields"></div> <!-- Dynamically populated config fields go here -->
 
-            <button type="submit" name="save" class="button"><i class="fa fa-save"></i> Commit Changes</button>
+            <hr>
+
+            <button type="submit" name="save" class="button" style="background:green"><i class="fa fa-upload"></i> Commit Changes</button>
         </form>
     </div>
 </div>
