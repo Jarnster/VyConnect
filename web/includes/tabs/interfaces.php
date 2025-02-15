@@ -39,7 +39,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
         <h2>Interface Configuration: <b id="interfaceNameDisplay" name="interfaceNameDisplay"></b></h2>
         <form method="post" id="interfaceForm" name="interfaceForm">
             <label for="description">Interface (read-only):</label>
-            <input type="text" id="interface_name" name="interface_name" readonly disabled>
+            <input type="text" id="interface_name" name="interface_name" readonly>
 
             <br>
 
@@ -64,7 +64,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
             <br>
 
             <label for="macAddress">MAC Address (read-only):</label>
-            <input type="text" id="macAddress" name="macAddress" readonly disabled>
+            <input type="text" id="macAddress" name="macAddress" readonly>
 
             <hr>
 

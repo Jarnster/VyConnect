@@ -31,7 +31,9 @@ select:hover {
 
 input::placeholder,
 select:disabled,
-input:disabled {
+input:disabled,
+select:read-only,
+input:read-only {
     color: rgba(255, 255, 255, 0.6);
 }
 

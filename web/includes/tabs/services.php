@@ -107,7 +107,7 @@ if (isset($_POST['save']) && isset($_POST['service_name'])) {
         <h2>Service Configuration: <b id="serviceNameDisplay" name="serviceNameDisplay"></b></h2>
         <form method="post" id="serviceForm" name="serviceForm">
             <label for="service_name">Service (read-oly):</label>
-            <input type="text" id="service_name" name="service_name" readonly disabled>
+            <input type="text" id="service_name" name="service_name" readonly>
 
             <div id="configFields"></div> <!-- Dynamically populated config fields go here -->
 
