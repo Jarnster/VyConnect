@@ -10,7 +10,7 @@
 
 Also make sure to have Ethernet interfaces, speed and duplex set
 
-https://docs.vyos.io/en/equuleus/automation/vyos-api.html#show
+https://docs.vyos.io/en/latest/automation/vyos-api.html
 
 https://docs.vyos.io/en/latest/configuration/service/https.html
 
