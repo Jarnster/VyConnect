@@ -105,18 +105,28 @@ if (isset($_POST['selectRouterIndex'])) {
                 if (isset($ROUTERS) && is_array($ROUTERS)) {
                     $selectedRouter = $_SESSION['routerIndex'] ?? 0;
 
-                    function pingRouter($ip)
+                    function isRouterUp($ip)
                     {
                         $api = new RestAPI($ip);
 
-                        return $api->retrieve() !== null;
+                        $retrieve_req = $api->retrieve();
+
+                        if (!$retrieve_req) {
+                            return false;
+                        }
+
+                        if (!json_decode($retrieve_req)->data) {
+                            return false;
+                        }
+
+                        return true;
                     }
 
                     foreach ($ROUTERS as $index => $router) {
                         $routerName = htmlspecialchars($router['name']);
                         $routerIp = $router['ip'];
                         $isActive = ($index == $selectedRouter);
-                        $pingStatus = pingRouter($routerIp) ? 'UP' : 'DOWN';
+                        $pingStatus = isRouterUp($routerIp) ? 'UP' : 'DOWN';
                         $pingColor = $pingStatus == 'UP' ? 'green' : 'red';
                         $statusEmoji = $pingStatus == 'UP' ? '✅' : '❌';
 
