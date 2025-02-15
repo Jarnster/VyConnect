@@ -124,7 +124,6 @@ if (isset($_POST['selectRouterIndex'])) {
                             $routerName .= " (🦺 MANAGING)";
                         }
 
-                        // Voeg hier het selected attribuut toe als de router geselecteerd is
                         $selectedAttr = ($index == $selectedRouter) ? 'selected' : '';
 
                         echo "<option value='$index' style='color:$pingColor;' $selectedAttr>($statusEmoji $pingStatus) $routerName</option>";
