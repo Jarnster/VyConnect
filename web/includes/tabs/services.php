@@ -1,4 +1,12 @@
 <?php
+// Auth Check
+$rootPath = __DIR__;
+while (!file_exists($rootPath . '/includes')) $rootPath = dirname($rootPath);
+
+require $rootPath . '/includes/auth.php';
+?>
+
+<?php
 if (isset($_POST['save']) && isset($_POST['service_name'])) {
     $api = new RestAPI();
 
@@ -103,7 +111,7 @@ if (isset($_POST['save']) && isset($_POST['service_name'])) {
 
             <div id="configFields"></div> <!-- Dynamically populated config fields go here -->
 
-            <button type="submit" name="save"><i class="fa fa-save"></i> Commit Changes</button>
+            <button type="submit" name="save" class="button"><i class="fa fa-save"></i> Commit Changes</button>
         </form>
     </div>
 </div>
@@ -117,8 +125,8 @@ if (isset($_POST['save']) && isset($_POST['service_name'])) {
     </thead>
     <tbody>
         <?php
-        $Rest = new RestAPI();
-        $runningConfiguration = $Rest->retrieve();
+        $api = new RestAPI();
+        $runningConfiguration = $api->retrieve();
         $runningConfiguration = json_decode($runningConfiguration);
         $runningConfiguration = $runningConfiguration->data;
         $services = $runningConfiguration->service;
@@ -131,7 +139,7 @@ if (isset($_POST['save']) && isset($_POST['service_name'])) {
 
             echo "<tr>";
             echo "<td>" . $service_name . "</td>";
-            echo "<td><button class='open-modal' data-service='$service_json'>CONFIGURATION</button></td>";
+            echo "<td><button class='open-modal button' data-service='$service_json' class='button'><i class='fa fa-pencil'></i> CONFIGURATION</button></td>";
             echo "</tr>";
         }
         ?>

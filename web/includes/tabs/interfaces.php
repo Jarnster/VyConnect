@@ -1,6 +1,14 @@
 <?php
+// Auth Check
+$rootPath = __DIR__;
+while (!file_exists($rootPath . '/includes')) $rootPath = dirname($rootPath);
+
+require $rootPath . '/includes/auth.php';
+?>
+
+<?php
 if (isset($_POST['save']) && isset($_POST['interface_name'])) {
-    $Rest = new RestAPI();
+    $api = new RestAPI();
 
     $interface_name = htmlspecialchars($_POST['interface_name']);
     $description = htmlspecialchars($_POST['description']);
@@ -15,7 +23,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
         "duplex" => $duplex
     ];
 
-    $Rest->update_interface($interface_name, $data);
+    $api->update_interface($interface_name, $data);
 
     header('Location: ' . $_SERVER['REQUEST_URI']);
     exit;
@@ -60,7 +68,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
 
             <hr>
 
-            <button type="submit" name="save"><i class="fa fa-save"></i> Commit Changes</button>
+            <button type="submit" name="save" class="button"><i class="fa fa-save"></i> Commit Changes</button>
         </form>
     </div>
 </div>
@@ -81,9 +89,9 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
     </thead>
     <tbody>
         <?php
-        $Rest = new RestAPI();
+        $api = new RestAPI();
 
-        $runningConfiguration = $Rest->retrieve();
+        $runningConfiguration = $api->retrieve();
         $runningConfiguration = json_decode($runningConfiguration);
         $runningConfiguration = $runningConfiguration->data;
 
@@ -110,7 +118,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
             echo "<td>" . $interface->speed . "</td>";
             echo "<td>" . $interface->duplex . "</td>";
             echo "<td>" . create_html_interface_state($interface) . "</td>";
-            echo "<td><button class='open-modal' data-interface='$interface_json'>EDIT</button></td>";
+            echo "<td><button class='open-modal button' data-interface='$interface_json'><i class='fa fa-pencil'></i> CONFIGURATION</button></td>";
             echo "</tr>";
         }
         ?>

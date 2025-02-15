@@ -1,3 +1,11 @@
+<?php
+// Auth Check
+$rootPath = __DIR__;
+while (!file_exists($rootPath . '/includes')) $rootPath = dirname($rootPath);
+
+require $rootPath . '/includes/auth.php';
+?>
+
 <h2><i class="fa fa-tv"></i> Dashboard</h2>
 <div class="dashboard-widgets">
     <div class="widget">
@@ -7,9 +15,9 @@
     <div class="widget">
         <h2>Quick Overview</h2>
         <?php
-        $Rest = new RestAPI();
+        $api = new RestAPI();
 
-        $runningConfiguration = $Rest->retrieve();
+        $runningConfiguration = $api->retrieve();
         $runningConfiguration = json_decode($runningConfiguration);
         $runningConfiguration = $runningConfiguration->data;
 

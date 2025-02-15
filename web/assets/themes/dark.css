@@ -13,11 +13,28 @@ span {
     color: rgba(32, 127, 235, 0.75);
 }
 
-button,
 input,
 select {
-    background: rgba(19, 21, 30, 0.75);
-    color: #d1cfcf;
+    background-color: #343a40;
+    color: #f8f9fa;
+    border: 2px solid #495057;
+}
+
+input:focus,
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+input:hover,
+select:hover {
+    border-color: #80bdff;
+    background-color: #495057;
+}
+
+input::placeholder,
+select:disabled {
+    color: rgba(248, 249, 250, 0.7);
 }
 
 /* General Styles */
@@ -122,7 +139,7 @@ body {
     cursor: pointer;
 }
 
-/* Interfaces table */
+/* Table */
 .table {
     border-collapse: collapse;
     width: 100%;
