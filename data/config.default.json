@@ -5,10 +5,10 @@
     "VYOS_ROUTERS": [
         {
             "name": "Local Router 1",
-            "ip": "https://127.0.0.1"
+            "ip": "https://127.0.0.1",
+            "api_key": "YOUR_SECRET_KEY"
         }
     ],
-    "VYOS_API_KEY": "YOUR_SECRET_KEY",
     "WEBHOOK_URL": "",
     "CURL_DEBUGGING": false,
     "DISABLE_SSL_VERIFY": true

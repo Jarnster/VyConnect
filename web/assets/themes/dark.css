@@ -59,10 +59,6 @@ select {
     text-align: center;
 }
 
-.alert {
-    background: #9a2f27;
-}
-
 /* Sidebar */
 .sidebar {
     width: 250px;

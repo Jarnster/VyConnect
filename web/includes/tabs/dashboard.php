@@ -41,7 +41,7 @@ require $rootPath . '/includes/auth.php';
         ?>
     </div>
     <div class="widget">
-        <h2><i class="fa fa-tachometer-alt"></i> System Information</h2>
+        <h2><i class="fa fa-tachometer-alt"></i> System Information (<?php echo htmlspecialchars($ROUTERS[$_SESSION['routerIndex']]['name']) ?? "N/A"; ?>)</h2>
         <?php
         function formatData($data)
         {

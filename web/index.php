@@ -8,7 +8,7 @@ $tabs = include 'includes/tabs.php';
 // Get the current tab
 $tab = isset($_GET['tab']) && array_key_exists($_GET['tab'], $tabs) ? $_GET['tab'] : 'dashboard';
 
-// Alert systeem
+// Alert system
 if (!isset($_SESSION['alerts'])) {
     $_SESSION['alerts'] = [];
 }
@@ -48,7 +48,8 @@ if (isset($_POST['rejectPendingChanges'])) {
 
 if (isset($_POST['selectRouterIndex'])) {
     $_SESSION['routerIndex'] = intval($_POST['routerIndex']);
-    addAlert("Router index changed to {$_SESSION['routerIndex']}", "info");
+    $selectedRouterName = htmlspecialchars($ROUTERS[$_SESSION['routerIndex']]['name']) ?? "N/A";
+    addAlert("Managing router changed to {$selectedRouterName}", "info");
 }
 ?>
 
@@ -77,7 +78,6 @@ if (isset($_POST['selectRouterIndex'])) {
             </div>
         <?php endif; ?>
 
-
         <!-- Pending Changes -->
         <?php if (!empty($_SESSION['pendingChanges'])): ?>
             <div class="pendingChanges">
@@ -100,7 +100,7 @@ if (isset($_POST['selectRouterIndex'])) {
 
         <!-- Router selection -->
         <form id="routerForm" method="post">
-            <select name="routerIndex" id="routerSelect" onchange="document.getElementById('routerForm').submit();">
+            <select name="routerIndex" id="routerSelect" onchange="updateRouterIndex();">
                 <?php
                 if (isset($ROUTERS) && is_array($ROUTERS)) {
                     $selectedRouter = $_SESSION['routerIndex'] ?? 0;
@@ -123,7 +123,10 @@ if (isset($_POST['selectRouterIndex'])) {
                             $routerName .= " (🦺 MANAGING)";
                         }
 
-                        echo "<option value='$index' style='color:$pingColor;'>($statusEmoji $pingStatus) $routerName</option>";
+                        // Voeg hier het selected attribuut toe als de router geselecteerd is
+                        $selectedAttr = ($index == $selectedRouter) ? 'selected' : '';
+
+                        echo "<option value='$index' style='color:$pingColor;' $selectedAttr>($statusEmoji $pingStatus) $routerName</option>";
                     }
                 } else {
                     echo "<option disabled>No routers available</option>";
@@ -159,5 +162,13 @@ if (isset($_POST['selectRouterIndex'])) {
     </div>
 </div>
 </body>
+
+<script>
+    function updateRouterIndex() {
+        var routerIndex = document.getElementById('routerSelect').value;
+        document.getElementById('routerForm').querySelector('input[name="selectRouterIndex"]').value = routerIndex;
+        document.getElementById('routerForm').submit();
+    }
+</script>
 
 </html>

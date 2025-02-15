@@ -64,11 +64,30 @@ select {
 }
 
 .alert {
-    background: #f44336;
     color: white;
     padding: 15px;
     border-radius: 4px;
     font-weight: bold;
+}
+
+/* Info alert (light blue) */
+.alert-info {
+    background: #31708f;
+}
+
+/* Success alert (green) */
+.alert-success {
+    background: #3c763d;
+}
+
+/* Warning alert (yellow) */
+.alert-warning {
+    background: #8a6d3b;
+}
+
+/* Danger alert (red) */
+.alert-danger {
+    background: #a94442;
 }
 
 hr {
