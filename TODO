@@ -1,0 +1,22 @@
+TODO LIST for VyConnect
+
+Basic:
+- NAT
+- Firewall
+- Adding interfaces
+- Setup Wizard for setting up services
+- Router and hardware Performance/Statistics
+- Logging
+- Supporting multiple administrator user accounts
+- Security Alerting
+- Rest API back-end storing (sending HTTP on interval, storing the replies)
+
+Advanced:
+- Calculating automatic recommended changes during a monitoring period of automatically reported statistics
+- Automatic (unit) tests for VyOS features in rolling/stable releases
+
+Multi-router focussed Controller Integrations:
+- Router group management
+- Applying global configurations on groups
+- Comparing configurations between routers groups
+- Comparing performance/statistics between router groups
