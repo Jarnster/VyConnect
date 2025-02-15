@@ -66,7 +66,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
             <label for="macAddress">MAC Address (read-only):</label>
             <input type="text" id="macAddress" name="macAddress" readonly>
 
-            <hr>
+            <br><br>
 
             <button type="submit" name="save" class="button" style="background:green"><i class="fa fa-upload"></i> Commit Changes</button>
         </form>

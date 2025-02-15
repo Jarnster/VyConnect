@@ -70,7 +70,7 @@ if (isset($_POST['selectRouterIndex'])) {
                         <strong><?php echo strtoupper($alert['type']); ?>:</strong>
                         <?php echo htmlspecialchars($alert['message']); ?>
                         <br>
-                        <small style="color: gray;">(<?php echo $alert['timestamp']; ?>)</small>
+                        <small style="color: whitesmoke;">(<?php echo $alert['timestamp']; ?>)</small>
                     </div>
                     <br>
                 <?php endforeach; ?>
@@ -85,10 +85,11 @@ if (isset($_POST['selectRouterIndex'])) {
                 <p>You have committed changes that aren't saved to the config file yet. If you are sure about your current configuration, accept the changes.</p>
                 <p><strong>Hint:</strong> To see what's changed, use the CLI in Configuration mode ('configure') and enter: 'compare saved'</p>
                 <form method='post' style='text-align:center'>
-                    <button type='submit' name='acceptPendingChanges' style='font-size:16px;background:green;padding:5px;'>
+                    <button type='submit' name='acceptPendingChanges' class='button' style='background:green'>
                         <i class='fa fa-check' style='color:white;'></i> Accept pending changes
                     </button>
-                    <button type='submit' name='rejectPendingChanges' style='font-size:16px;background:red;padding:5px;'>
+                    <br><br>
+                    <button type='submit' name='rejectPendingChanges' class='button' style='background:crimson'>
                         <i class='fa fa-close' style='color:white;'></i> Reject pending changes
                     </button>
                 </form>

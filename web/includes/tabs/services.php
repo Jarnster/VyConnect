@@ -111,7 +111,7 @@ if (isset($_POST['save']) && isset($_POST['service_name'])) {
 
             <div id="configFields"></div> <!-- Dynamically populated config fields go here -->
 
-            <hr>
+            <br><br>
 
             <button type="submit" name="save" class="button" style="background:green"><i class="fa fa-upload"></i> Commit Changes</button>
         </form>

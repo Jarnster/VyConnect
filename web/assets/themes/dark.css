@@ -60,11 +60,7 @@ select {
 }
 
 .alert {
-    background: #f44336;
-    color: white;
-    padding: 15px;
-    border-radius: 4px;
-    font-weight: bold;
+    background: #9a2f27;
 }
 
 /* Sidebar */
