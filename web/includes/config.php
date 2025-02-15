@@ -10,6 +10,7 @@ $ROUTERS = $config['VYOS_ROUTERS'];
 $VYOS_API_TIMEOUT = $config['VYOS_API_TIMEOUT'];
 $curl_debugging = $config["CURL_DEBUGGING"];
 $disable_ssl_verify = $config["DISABLE_SSL_VERIFY"];
+$__VERSIONING_CODE = $config["__VERSIONING_CODE"];
 
 // If there's no existing password hash in the config, generate and save one
 if ($PWD_HASH === null) {

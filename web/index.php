@@ -15,6 +15,11 @@ if (!isset($_SESSION['alerts'])) {
 
 function addAlert($message, $type = 'info')
 {
+    foreach ($_SESSION['alerts'] as $alert) {
+        if ($alert['message'] === $message && $alert['type'] === $type) {
+            return; // Cancel if another alert with the same content already exists
+        }
+    }
     $_SESSION['alerts'][] = [
         'message' => $message,
         'type' => $type,
@@ -22,6 +27,51 @@ function addAlert($message, $type = 'info')
     ];
 }
 
+function check_version()
+{
+    require 'includes/config.php';
+
+    $url = "https://vyconnect.jarne.synology.me/version_checker.php?current_ver=" . $__VERSIONING_CODE;
+
+    if (isset($_SESSION['version_check_response']) && time() - $_SESSION['version_check_time'] < (3600 * 24 * 1)) {
+        $response_data = $_SESSION['version_check_response'];
+    } else {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        if ($curl_debugging) {
+            curl_setopt($ch, CURLOPT_VERBOSE, true);
+        }
+
+        if ($disable_ssl_verify) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
+
+        $response = curl_exec($ch);
+
+        curl_close($ch);
+
+        if ($response !== false) {
+            $response_data = json_decode($response, true);
+
+            $_SESSION['version_check_response'] = $response_data;
+            $_SESSION['version_check_time'] = time();
+        }
+    }
+
+    if ($response_data) {
+        if ($response_data["status"] != "success") {
+            addAlert($response_data["message"], $response_data["status"]);
+        }
+    }
+}
+
+check_version();
+
+// POST Handlers
 if (isset($_POST['dismissAlert'])) {
     $index = intval($_POST['dismissAlert']);
     unset($_SESSION['alerts'][$index]);

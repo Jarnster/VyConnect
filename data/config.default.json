@@ -12,5 +12,6 @@
     "VYOS_API_TIMEOUT": 0.2,
     "WEBHOOK_URL": "",
     "CURL_DEBUGGING": false,
-    "DISABLE_SSL_VERIFY": true
+    "DISABLE_SSL_VERIFY": true,
+    "__VERSIONING_CODE": "earlydev-s1"
 }
