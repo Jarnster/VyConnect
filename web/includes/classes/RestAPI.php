@@ -237,13 +237,13 @@ class RestAPI
         $buildCommands = function ($data, $currentPath = []) use (&$buildCommands, &$commands, $service_name) {
             foreach ($data as $key => $value) {
                 $newPath = array_merge($currentPath, [$key]);
-                if (is_array($value)) {
+                if (is_array($value) && !isset($value['op'])) {
                     $buildCommands($value, $newPath);
                 } else {
+                    $path = array_merge(["service", $service_name], $newPath, [$value]);
                     $commands[] = [
                         "op" => "set",
-                        "path" => array_merge(["service", $service_name], $newPath),
-                        "value" => $value
+                        "path" => $path,
                     ];
                 }
             }
@@ -252,6 +252,8 @@ class RestAPI
         $buildCommands($data);
 
         $req_data = json_encode($commands);
+
+        echo $req_data;
 
         $this->ch = curl_init();
 
