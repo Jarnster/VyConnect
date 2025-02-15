@@ -7,6 +7,7 @@ $config = json_decode(file_get_contents('../data/config.json'), true);
 $ADMIN_PWD = $config['ADMIN_PWD'] ?? 'zendns';
 $PWD_HASH = $config['ADMIN_PWD_HASH'] ?? null;
 $ROUTERS = $config['VYOS_ROUTERS'];
+$VYOS_API_TIMEOUT = $config['VYOS_API_TIMEOUT'];
 $curl_debugging = $config["CURL_DEBUGGING"];
 $disable_ssl_verify = $config["DISABLE_SSL_VERIFY"];
 

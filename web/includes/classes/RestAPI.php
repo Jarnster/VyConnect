@@ -22,6 +22,8 @@ class RestAPI
     }
     private function getCurlOptParameters() // Only call this function when $this->ch is already initialized (with curl_init)
     {
+        require 'includes/config.php';
+
         if ($this->curl_debugging) {
             curl_setopt($this->ch, CURLOPT_VERBOSE, true);
         }
@@ -30,6 +32,8 @@ class RestAPI
             curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false);
         }
+
+        curl_setopt($this->ch, CURLOPT_TIMEOUT, $VYOS_API_TIMEOUT);
     }
 
     protected function setDebugParameters(bool $curl_debugging, bool $disable_ssl_verify)
@@ -50,7 +54,6 @@ class RestAPI
         // Variables bound to this request
         $endpoint = $this->restURL . "/retrieve";
         $req_data = json_encode(["op" => "showConfig", "path" => []]);
-
 
         $this->ch = curl_init();
 

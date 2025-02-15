@@ -108,6 +108,7 @@ if (isset($_POST['selectRouterIndex'])) {
                     function pingRouter($ip)
                     {
                         $api = new RestAPI($ip);
+
                         return $api->retrieve() !== null;
                     }
 
