@@ -41,15 +41,21 @@ require $rootPath . '/includes/auth.php';
         ?>
     </div>
     <div class="widget">
-        <h2><i class="fa fa-tachometer-alt"></i> System Performance</h2>
+        <h2><i class="fa fa-tachometer-alt"></i> System Information</h2>
         <?php
         function formatData($data)
         {
-            // Remove extra spaces and new lnes
+            // Remove extra spaces and new lines
             $data = preg_replace('/\s+/', ' ', trim($data));
             // Turn spaces into <br>
             return str_replace(" ", "<br>", htmlspecialchars($data));
         }
+
+        // Version Info
+        $version = $api->show_running_config(["version"]);
+        $version = json_decode($version)->data;
+
+        echo "<strong>Version:</strong><br>" . nl2br(htmlspecialchars($version)) . "<br><hr>";
 
         // Uptime and load averages
         $uptime = $api->show_running_config(["system", "uptime"]);
