@@ -15,6 +15,6 @@ if (isset($_POST['reboot_confirm'])) {
 
 <h2><i class="fa fa-refresh"></i> Reboot</h2>
 
-<form method="post">
+<form method="post" autocomplete="off">
     <button type="submit" name="reboot_confirm" class="button" style="background:crimson;"><i class="fa fa-check"></i> Confirm Reboot</button>
 </form>

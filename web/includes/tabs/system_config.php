@@ -37,7 +37,7 @@ $runningConfiguration = $runningConfiguration->data;
 $systemConfig = $runningConfiguration->system->option;
 ?>
 
-<form method="post" id="systemConfigForm" name="systemConfigForm">
+<form method="post" id="systemConfigForm" name="systemConfigForm" autocomplete="off">
     <label for="performance_priority">Performance Priority:</label>
     <select id="performance_priority" name="performance_priority">
         <option value="" <?php echo (!$systemConfig->performance) ? 'selected' : ''; ?>>None</option>

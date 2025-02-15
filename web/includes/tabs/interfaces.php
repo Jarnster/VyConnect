@@ -37,7 +37,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Interface Configuration: <b id="interfaceNameDisplay" name="interfaceNameDisplay"></b></h2>
-        <form method="post" id="interfaceForm" name="interfaceForm">
+        <form method="post" id="interfaceForm" name="interfaceForm" autocomplete="off">
             <label for="description">Interface (read-only):</label>
             <input type="text" id="interface_name" name="interface_name" readonly>
 

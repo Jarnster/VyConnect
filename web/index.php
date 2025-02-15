@@ -115,7 +115,7 @@ if (isset($_POST['selectRouterIndex'])) {
             <div class="alerts">
                 <?php foreach ($_SESSION['alerts'] as $index => $alert): ?>
                     <div class="alert alert-<?php echo htmlspecialchars($alert['type']); ?>">
-                        <form method="post" style="display:inline;">
+                        <form method="post" style="display:inline;" autocomplete="off">
                             <button type="submit" name="dismissAlert" value="<?php echo $index; ?>" class="fa fa-check-circle" style="width:auto;padding:0;border:none;background:none;color:yellowgreen;font-size:20px;font-weight:bold;cursor:pointer;"></button>
                         </form>
                         <strong><?php echo strtoupper($alert['type']); ?>:</strong>
@@ -134,7 +134,7 @@ if (isset($_POST['selectRouterIndex'])) {
                 <h2><i class='fa fa-warning'></i> Unsaved Changes</h2>
                 <p>You have committed changes that aren't saved to the config file yet. If you are sure about your current configuration, accept the changes.</p>
                 <p><strong>Hint:</strong> To see what's changed, use the CLI in Configuration mode ('configure') and enter: 'compare saved'</p>
-                <form method='post' style='text-align:center'>
+                <form method='post' style='text-align:center' autocomplete="off">
                     <button type='submit' name='acceptPendingChanges' class='button' style='background:green'>
                         <i class='fa fa-check' style='color:white;'></i> Accept pending changes
                     </button>
@@ -149,7 +149,7 @@ if (isset($_POST['selectRouterIndex'])) {
         <hr>
 
         <!-- Router selection -->
-        <form id="routerForm" method="post">
+        <form id="routerForm" method="post" autocomplete="off">
             <select name="routerIndex" id="routerSelect" onchange="updateRouterIndex();">
                 <?php
                 if (isset($ROUTERS) && is_array($ROUTERS)) {
@@ -162,10 +162,6 @@ if (isset($_POST['selectRouterIndex'])) {
                         $retrieve_req = $api->retrieve();
 
                         if (!$retrieve_req) {
-                            return false;
-                        }
-
-                        if (!json_decode($retrieve_req)->data) {
                             return false;
                         }
 

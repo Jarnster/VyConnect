@@ -105,7 +105,7 @@ if (isset($_POST['save']) && isset($_POST['service_name'])) {
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Service Configuration: <b id="serviceNameDisplay" name="serviceNameDisplay"></b></h2>
-        <form method="post" id="serviceForm" name="serviceForm">
+        <form method="post" id="serviceForm" name="serviceForm" autocomplete="off">
             <label for="service_name">Service (read-oly):</label>
             <input type="text" id="service_name" name="service_name" readonly>
 

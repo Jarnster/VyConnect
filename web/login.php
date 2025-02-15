@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="error-message"><?= $error_message ?></div>
     <?php endif; ?>
 
-    <form method="post">
+    <form method="post" autocomplete="off">
       <input type="password" name="pwd" class="input-field" placeholder="Enter password" required>
       <hr>
       <input type="checkbox" name="dark_theme" value="1" id="dark_theme"><i class="fa fa-moon"></i> Use dark theme
