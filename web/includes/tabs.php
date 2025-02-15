@@ -2,6 +2,8 @@
 return [
     'dashboard' => ['icon' => 'fa-tv', 'title' => 'Dashboard'],
     'interfaces' => ['icon' => 'fa-ethernet', 'title' => 'Interfaces'],
+    'services' => ['icon' => 'fa-cogs', 'title' => 'Services'],
+    'system' => ['icon' => 'fa-server', 'title' => 'System'],
     'setup_wizard' => ['icon' => 'fa-wrench', 'title' => 'Setup Wizard'],
     // 'logs' => ['icon' => 'fa-history', 'title' => 'Logs'],
     // 'data_management' => ['icon' => 'fa-database', 'title' => 'Data Management'],

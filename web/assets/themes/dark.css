@@ -123,13 +123,13 @@ body {
 }
 
 /* Interfaces table */
-.interfaces-table {
+.table {
     border-collapse: collapse;
     width: 100%;
 }
 
-.interfaces-table td,
-.interfaces-table th {
+.table td,
+.table th {
     color: whitesmoke;
     background-color: rgba(25, 37, 50, 0.7);
     border: 1px solid rgb(25, 37, 50);
@@ -137,17 +137,17 @@ body {
     text-align: center;
 }
 
-.interfaces-table tr:nth-child(even) {
+.table tr:nth-child(even) {
     color: whitesmoke;
     background-color: rgba(13, 99, 191, 0.5);
 }
 
-.interfaces-table tr:hover {
+.table tr:hover {
     color: whitesmoke;
     background-color: rgba(25, 37, 50, 0.6);
 }
 
-.interfaces-table th {
+.table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;

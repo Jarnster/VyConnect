@@ -66,7 +66,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
 </div>
 
 
-<table class="interfaces-table">
+<table class="table">
     <thead>
         <tr>
             <th><i class="fa fa-ethernet"></i> Interface</th>
@@ -103,7 +103,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
             ], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS));
 
             echo "<tr>";
-            echo "<td><b>" . $interface_name . "</b></td>";
+            echo "<td>" . $interface_name . "</td>";
             echo "<td>" . $interface->description . "</td>";
             echo "<td>" . $interface->address . "</td>";
             echo "<td>" . $interface->{"hw-id"} . "</td>";

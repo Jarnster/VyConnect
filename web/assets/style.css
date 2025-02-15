@@ -44,7 +44,8 @@ hr {
     height: 1px;
     background: linear-gradient(to right, transparent, grey, transparent);
     box-shadow: 0 0 5px rgba(128, 128, 128, 0.5);
-    margin: 20px 0; /* Extra room at topside and downside */
+    margin: 20px 0;
+    /* Extra room at topside and downside */
 }
 
 .sidebar {
@@ -356,27 +357,27 @@ button:focus,
 }
 
 /* Interfaces table */
-.interfaces-table {
+.table {
     border-collapse: collapse;
     width: 100%;
 }
 
-.interfaces-table td,
-.interfaces-table th {
+.table td,
+.table th {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
-.interfaces-table tr:nth-child(even) {
+.table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.interfaces-table tr:hover {
+.table tr:hover {
     background-color: #ddd;
 }
 
-.interfaces-table th {
+.table th, .table th i {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
