@@ -1,6 +1,6 @@
-## Feel free to join Discussion, Issues or Pull Requests!
+## 💡Feel free to join Discussion, Issues or Pull Requests!
 
-Also please add a star if you like to use it ;)
+🌟 Also please add a star if you like to use it ;)
 
 ### To setup a VyOS router for VyConnect, you need to setup the REST API:
 
