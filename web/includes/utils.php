@@ -60,3 +60,13 @@ if (!function_exists('get_selected_router_api_key')) {
         return $ROUTERS[$routerIndex or 0]['api_key'];
     }
 }
+
+if(!function_exists('get_selected_router_index')) {
+    function get_selected_router_index()
+    {
+        $config = json_decode(file_get_contents(filename: '../data/config.json'), true);
+        $ROUTERS = $config["VYOS_ROUTERS"];
+        $routerIndex = intval($_SESSION['routerIndex']) ?? 0;
+        return $routerIndex;
+    }
+}

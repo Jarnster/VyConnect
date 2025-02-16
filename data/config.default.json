@@ -13,5 +13,6 @@
     "WEBHOOK_URL": "",
     "CURL_DEBUGGING": false,
     "DISABLE_SSL_VERIFY": true,
+    "CACHE_LIFETIME": 300,
     "__VERSIONING_CODE": "earlydev-s1"
 }
