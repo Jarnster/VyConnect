@@ -9,10 +9,11 @@
             "api_key": "YOUR_SECRET_KEY"
         }
     ],
-    "VYOS_API_TIMEOUT": 4,
+    "VYOS_API_TIMEOUT": 5,
     "WEBHOOK_URL": "",
     "CURL_DEBUGGING": false,
     "DISABLE_SSL_VERIFY": true,
     "CACHE_LIFETIME": 300,
+    "CURRENT_CONFIG_HASH": null,
     "__VERSIONING_CODE": "earlydev-s1"
 }
