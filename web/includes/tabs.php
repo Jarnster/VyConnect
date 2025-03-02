@@ -2,8 +2,10 @@
 return [
     'dashboard' => ['icon' => 'fa-tv', 'title' => 'Dashboard'],
     'interfaces' => ['icon' => 'fa-ethernet', 'title' => 'Interfaces'],
-    'services' => ['icon' => 'fa-cogs', 'title' => 'Services'],
-    'system_config' => ['icon' => 'fa-server', 'title' => 'System Config'],
+    'nat' => ['icon' => 'fa-exchange', 'title' => 'NAT'],
+    'firewall' => ['icon' => 'fa-fire', 'title' => 'Firewall'],
+    'services' => ['icon' => 'fa-podcast', 'title' => 'Services'],
+    'system_config' => ['icon' => 'fa-cog', 'title' => 'System Config'],
     'setup_wizard' => ['icon' => 'fa-wrench', 'title' => 'Setup Wizard'],
     'poweroff' => ['icon' => 'fa-power-off', 'title' => 'Power Off'],
     'reboot' => ['icon' => 'fa-refresh', 'title' => 'Reboot'],
