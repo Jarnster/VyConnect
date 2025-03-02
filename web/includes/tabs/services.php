@@ -98,7 +98,7 @@ if (isset($_POST['save']) && isset($_POST['service_name'])) {
 }
 ?>
 
-<h2><i class="fa fa-cogs"></i> Services</h2>
+<h2><i class="fa fa-podcast"></i> Services</h2>
 
 <!-- Service Configuration Modal -->
 <div id="serviceModal" class="modal">
