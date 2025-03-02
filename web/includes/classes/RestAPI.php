@@ -284,6 +284,8 @@ class RestAPI
         // Set session state after update
         $_SESSION['pendingChanges'] = true;
 
+        $this->caching->invalidateRouterCache(get_selected_router_index());
+
         return $this->response;
     }
 
@@ -349,6 +351,8 @@ class RestAPI
 
         // Set session state after update
         $_SESSION['pendingChanges'] = true;
+
+        $this->caching->invalidateRouterCache(get_selected_router_index());
 
         return $this->response;
     }
