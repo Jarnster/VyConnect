@@ -1,11 +1,24 @@
 <?php
 // Ensure these functions are only defined once (by using 'if !function_exists')
 
+session_start();
+
 if (!function_exists('set_config_pwd_hash')) {
     function set_config_pwd_hash($hash)
     {
         $config = json_decode(file_get_contents(filename: '../data/config.json'), true);
         $config["ADMIN_PWD_HASH"] = $hash;
+        $json = json_encode($config, JSON_PRETTY_PRINT);
+        file_put_contents("../data/config.json", $json);
+    }
+}
+
+if(!function_exists("set_config_config_hash"))
+{
+    function set_config_config_hash($hash)
+    {
+        $config = json_decode(file_get_contents(filename: '../data/config.json'), true);
+        $config["CURRENT_CONFIG_HASH"] = $hash;
         $json = json_encode($config, JSON_PRETTY_PRINT);
         file_put_contents("../data/config.json", $json);
     }
