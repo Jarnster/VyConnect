@@ -25,7 +25,7 @@ if (isset($_POST['save'])) {
 }
 ?>
 
-<h2><i class="fa fa-server"></i> System Config</h2>
+<h2><i class="fa fa-cog"></i> System Config</h2>
 
 <?php
 $api = new RestAPI();
