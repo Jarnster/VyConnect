@@ -15,12 +15,14 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
     $address = htmlspecialchars($_POST['address']);
     $speed = htmlspecialchars($_POST['speed']);
     $duplex = htmlspecialchars($_POST['duplex']);
+    $mtu = htmlspecialchars($_POST['mtu']);
 
     $data = [
         "description" => $description,
         "address" => $address,
         "speed" => $speed,
-        "duplex" => $duplex
+        "duplex" => $duplex,
+        "mtu" => $mtu
     ];
 
     $api->update_interface($interface_name, $data);
@@ -63,6 +65,11 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
 
             <br>
 
+            <label for="duplex">MTU:</label>
+            <input type="text" id="mtu" name="mtu">
+
+            <br>
+
             <label for="macAddress">MAC Address (read-only):</label>
             <input type="text" id="macAddress" name="macAddress" readonly>
 
@@ -83,6 +90,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
             <th><i class="fa fa-plug"></i> MAC Address</th>
             <th><i class="fa fa-podcast"></i> Speed</th>
             <th><i class="fa fa-signal"></i> Duplex</th>
+            <th><i class="fa fa-box"></i> MTU</th>
             <th><i class="fa fa-power-on"></i> State</th>
             <th><i class="fa fa-cogs"></i> Actions</th>
         </tr>
@@ -107,6 +115,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
                 "mac" => $interface->{"hw-id"},
                 "speed" => $interface->speed,
                 "duplex" => $interface->duplex,
+                "mtu" => $interface->mtu,
                 "state" => get_interface_state($interface)
             ], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS));
 
@@ -117,6 +126,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
             echo "<td>" . $interface->{"hw-id"} . "</td>";
             echo "<td>" . $interface->speed . "</td>";
             echo "<td>" . $interface->duplex . "</td>";
+            echo "<td>" . $interface->mtu . "</td>";
             echo "<td>" . create_html_interface_state($interface) . "</td>";
             echo "<td><button class='open-modal button' data-interface='$interface_json'><i class='fa fa-pencil'></i> CONFIGURATION</button></td>";
             echo "</tr>";
@@ -138,6 +148,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
             document.getElementById("macAddress").value = interfaceData.mac;
             document.getElementById("speed").value = interfaceData.speed;
             document.getElementById("duplex").value = interfaceData.duplex;
+            document.getElementById("mtu").value = interfaceData.mtu;
 
             modal.style.display = "block";
         }

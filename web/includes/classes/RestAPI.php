@@ -356,4 +356,138 @@ class RestAPI
 
         return $this->response;
     }
+
+    public function update_system_config($data)
+    {
+        require 'includes/config.php';
+
+        // Variables bound to this request
+        $endpoint = $this->restURL . "/configure";
+
+        $commands = [];
+
+        foreach ($data as $key => $value) {
+            $commands[] = [
+                "op" => "set",
+                "path" => ["system", "option", $key, $value]
+            ];
+        }
+
+        $req_data = json_encode($commands);
+
+        $this->ch = curl_init();
+
+        $this->getCurlOptParameters();
+
+        curl_setopt($this->ch, CURLOPT_URL, $endpoint);
+        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->ch, CURLOPT_HTTPHEADER, ["Content-Type: multipart/form-data"]);
+        curl_setopt($this->ch, CURLOPT_POST, true);
+
+        curl_setopt($this->ch, CURLOPT_POSTFIELDS, [
+            "data" => $req_data,
+            "key" => get_selected_router_api_key()
+        ]);
+
+        $this->response = curl_exec($this->ch);
+
+        if (curl_errno($this->ch)) {
+            echo "cURL Error: " . curl_error($this->ch);
+        } else {
+            $http_code = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
+            if ($http_code !== 200) {
+                echo "API Error: HTTP " . $http_code . " - Response: " . $this->response;
+            }
+        }
+
+        curl_close($this->ch);
+        $_SESSION['pendingChanges'] = true;
+        return $this->response;
+    }
+
+    public function reboot()
+    {
+        require 'includes/config.php';
+
+        // Variables bound to this request
+        $endpoint = $this->restURL . "/reboot";
+
+        $single_command = [
+            "op" => "reboot",
+            "path" => ["now"]
+        ];
+
+        $req_data = json_encode($single_command);
+
+        $this->ch = curl_init();
+
+        $this->getCurlOptParameters();
+
+        curl_setopt($this->ch, CURLOPT_URL, $endpoint);
+        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->ch, CURLOPT_HTTPHEADER, ["Content-Type: multipart/form-data"]);
+        curl_setopt($this->ch, CURLOPT_POST, true);
+
+        curl_setopt($this->ch, CURLOPT_POSTFIELDS, [
+            "data" => $req_data,
+            "key" => get_selected_router_api_key()
+        ]);
+
+        $this->response = curl_exec($this->ch);
+
+        if (curl_errno($this->ch)) {
+            echo "cURL Error: " . curl_error($this->ch);
+        } else {
+            $http_code = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
+            if ($http_code !== 200) {
+                echo "API Error: HTTP " . $http_code . " - Response: " . $this->response;
+            }
+        }
+
+        curl_close($this->ch);
+        return $this->response;
+    }
+
+    public function poweroff()
+    {
+        require 'includes/config.php';
+
+        // Variables bound to this request
+        $endpoint = $this->restURL . "/poweroff";
+
+        $single_command = [
+            "op" => "poweroff",
+            "path" => ["now"]
+        ];
+
+        $req_data = json_encode($single_command);
+
+        $this->ch = curl_init();
+
+        $this->getCurlOptParameters();
+
+        curl_setopt($this->ch, CURLOPT_URL, $endpoint);
+        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->ch, CURLOPT_HTTPHEADER, ["Content-Type: multipart/form-data"]);
+        curl_setopt($this->ch, CURLOPT_POST, true);
+
+        curl_setopt($this->ch, CURLOPT_POSTFIELDS, [
+            "data" => $req_data,
+            "key" => get_selected_router_api_key()
+        ]);
+
+        $this->response = curl_exec($this->ch);
+
+        if (curl_errno($this->ch)) {
+            echo "cURL Error: " . curl_error($this->ch);
+        } else {
+            $http_code = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
+            if ($http_code !== 200) {
+                echo "API Error: HTTP " . $http_code . " - Response: " . $this->response;
+            }
+        }
+
+        curl_close($this->ch);
+        return $this->response;
+    }
 }
