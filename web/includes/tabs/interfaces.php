@@ -4,29 +4,32 @@ $rootPath = __DIR__;
 while (!file_exists($rootPath . '/includes')) $rootPath = dirname($rootPath);
 
 require $rootPath . '/includes/auth.php';
-?>
 
-<?php
+$fields = [
+    "description" => "Description",
+    "address" => "Address",
+    "speed" => "Speed",
+    "duplex" => "Duplex",
+    "mtu" => "MTU"
+];
+
+$readonly_fields = [
+    "hw-id" => "MAC Address"
+];
+
 if (isset($_POST['save']) && isset($_POST['interface_name'])) {
     $api = new RestAPI();
 
     $interface_name = htmlspecialchars($_POST['interface_name']);
-    $description = htmlspecialchars($_POST['description']);
-    $address = htmlspecialchars($_POST['address']);
-    $speed = htmlspecialchars($_POST['speed']);
-    $duplex = htmlspecialchars($_POST['duplex']);
-    $mtu = htmlspecialchars($_POST['mtu']);
+    $data = [];
 
-    $data = [
-        "description" => $description,
-        "address" => $address,
-        "speed" => $speed,
-        "duplex" => $duplex,
-        "mtu" => $mtu
-    ];
+    foreach ($fields as $key => $label) {
+        if (isset($_POST[$key])) {
+            $data[$key] = htmlspecialchars($_POST[$key]);
+        }
+    }
 
     $api->update_interface($interface_name, $data);
-
     header('Location: ' . $_SERVER['REQUEST_URI']);
     exit;
 }
@@ -38,59 +41,40 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
 <div id="interfaceModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Interface Configuration: <b id="interfaceNameDisplay" name="interfaceNameDisplay"></b></h2>
+        <h2>Interface Configuration: <b id="interfaceNameDisplay"></b></h2>
         <form method="post" id="interfaceForm" name="interfaceForm" autocomplete="off">
-            <label for="description">Interface (read-only):</label>
+            <label for="interface_name">Interface (read-only):</label>
             <input type="text" id="interface_name" name="interface_name" readonly>
-
             <br>
 
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description">
+            <?php foreach ($fields as $key => $label): ?>
+                <label for="<?= $key ?>"><?= $label ?>:</label>
+                <input type="text" id="<?= $key ?>" name="<?= $key ?>">
+                <br>
+            <?php endforeach; ?>
+
+            <?php foreach ($readonly_fields as $key => $label): ?>
+                <label for="<?= $key ?>"><?= $label ?> (read-only):</label>
+                <input type="text" id="<?= $key ?>" name="<?= $key ?>" readonly>
+                <br>
+            <?php endforeach; ?>
 
             <br>
-
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address">
-
-            <br>
-
-            <label for="speed">Speed:</label>
-            <input type="text" id="speed" name="speed">
-
-            <br>
-
-            <label for="duplex">Duplex:</label>
-            <input type="text" id="duplex" name="duplex">
-
-            <br>
-
-            <label for="duplex">MTU:</label>
-            <input type="text" id="mtu" name="mtu">
-
-            <br>
-
-            <label for="macAddress">MAC Address (read-only):</label>
-            <input type="text" id="macAddress" name="macAddress" readonly>
-
-            <br><br>
-
             <button type="submit" name="save" class="button" style="background:green"><i class="fa fa-upload"></i> Commit Changes</button>
         </form>
     </div>
 </div>
 
-
 <table class="table">
     <thead>
         <tr>
             <th><i class="fa fa-ethernet"></i> Interface</th>
-            <th><i class="fa fa-message"></i> Description</th>
-            <th><i class="fa fa-exchange"></i> Address</th>
-            <th><i class="fa fa-plug"></i> MAC Address</th>
-            <th><i class="fa fa-podcast"></i> Speed</th>
-            <th><i class="fa fa-signal"></i> Duplex</th>
-            <th><i class="fa fa-box"></i> MTU</th>
+            <?php foreach ($fields as $label): ?>
+                <th><?= $label ?></th>
+            <?php endforeach; ?>
+            <?php foreach ($readonly_fields as $label): ?>
+                <th><?= $label ?></th>
+            <?php endforeach; ?>
             <th><i class="fa fa-power-on"></i> State</th>
             <th><i class="fa fa-cogs"></i> Actions</th>
         </tr>
@@ -98,35 +82,28 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
     <tbody>
         <?php
         $api = new RestAPI();
-
-        $runningConfiguration = $api->retrieve();
-        $runningConfiguration = json_decode($runningConfiguration);
-        $runningConfiguration = $runningConfiguration->data;
-
-        $interfaces = $runningConfiguration->interfaces;
-        $ethernet_interfaces = $interfaces->ethernet;
-
+        $runningConfiguration = json_decode($api->retrieve())->data;
+        $ethernet_interfaces = $runningConfiguration->interfaces->ethernet;
 
         foreach ($ethernet_interfaces as $interface_name => $interface) {
-            $interface_json = htmlspecialchars(json_encode([
+            $interface_json = htmlspecialchars(json_encode(array_merge([
                 "name" => $interface_name,
-                "description" => $interface->description,
-                "address" => $interface->address,
-                "mac" => $interface->{"hw-id"},
-                "speed" => $interface->speed,
-                "duplex" => $interface->duplex,
-                "mtu" => $interface->mtu,
                 "state" => get_interface_state($interface)
-            ], JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS));
+            ], array_combine(array_keys($fields), array_map(fn($key) => $interface->$key ?? '', array_keys($fields))),
+               array_combine(array_keys($readonly_fields), array_map(fn($key) => $interface->$key ?? '', array_keys($readonly_fields)))
+            ), JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS));
 
             echo "<tr>";
-            echo "<td>" . $interface_name . "</td>";
-            echo "<td>" . $interface->description . "</td>";
-            echo "<td>" . $interface->address . "</td>";
-            echo "<td>" . $interface->{"hw-id"} . "</td>";
-            echo "<td>" . $interface->speed . "</td>";
-            echo "<td>" . $interface->duplex . "</td>";
-            echo "<td>" . $interface->mtu . "</td>";
+            echo "<td>$interface_name</td>";
+
+            foreach ($fields as $key => $_) {
+                echo "<td>" . ($interface->$key ?? '') . "</td>";
+            }
+
+            foreach ($readonly_fields as $key => $_) {
+                echo "<td>" . ($interface->$key ?? '') . "</td>";
+            }
+
             echo "<td>" . create_html_interface_state($interface) . "</td>";
             echo "<td><button class='open-modal button' data-interface='$interface_json'><i class='fa fa-pencil'></i> CONFIGURATION</button></td>";
             echo "</tr>";
@@ -143,12 +120,11 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
         function openModal(interfaceData) {
             document.getElementById("interface_name").value = interfaceData.name;
             document.getElementById("interfaceNameDisplay").innerText = interfaceData.name;
-            document.getElementById("description").value = interfaceData.description;
-            document.getElementById("address").value = interfaceData.address;
-            document.getElementById("macAddress").value = interfaceData.mac;
-            document.getElementById("speed").value = interfaceData.speed;
-            document.getElementById("duplex").value = interfaceData.duplex;
-            document.getElementById("mtu").value = interfaceData.mtu;
+
+            Object.keys(interfaceData).forEach(key => {
+                let input = document.getElementById(key);
+                if (input) input.value = interfaceData[key];
+            });
 
             modal.style.display = "block";
         }
@@ -165,8 +141,7 @@ if (isset($_POST['save']) && isset($_POST['interface_name'])) {
 
         document.querySelectorAll(".open-modal").forEach(button => {
             button.addEventListener("click", function() {
-                const interfaceData = JSON.parse(this.dataset.interface);
-                openModal(interfaceData);
+                openModal(JSON.parse(this.dataset.interface));
             });
         });
     });
