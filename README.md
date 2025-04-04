@@ -4,6 +4,8 @@ VyConnect is an open-source web interface for managing multiple VyOS routers via
 
 ---
 
+![image](https://github.com/user-attachments/assets/57082baf-7422-4e9f-b1ae-a66566dd371d)
+
 ## 🚀 Installation
 
 Follow the steps below to set up VyConnect and connect it to your VyOS router through the REST API.
@@ -29,6 +31,8 @@ Ensure your Ethernet interfaces are properly configured with the correct speed a
 Copy `default.config.json` to `config.json` and modify the values to suit your setup. Be sure to include the correct router settings and REST API credentials.
 
 ### 4. **Access and Default Password**
+
+Use PHP to serve /web. If you are using Windows, you can open host_web.cmd, which runs the webpanel. Make sure you have got a recent version of PHP installed on your host system!
 
 The default password for VyConnect is `vyconnect`. Use this to log into the web interface.
 
