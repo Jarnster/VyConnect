@@ -1,6 +1,6 @@
 # VyConnect - VyOS Multi-Router UI Controller
 
-VyConnect is an open-source web interface for managing multiple VyOS routers via the official VyOS REST API. It provides a centralized way to configure and monitor multiple VyOS routers, with features for NAT, firewalls, interfaces, logging, performance monitoring, and more. The project aims to simplify multi-router management, providing a more integrated and user-friendly approach than managing routers individually via CLI.
+VyConnect is an open-source web interface for managing multiple VyOS routers via the official VyOS REST API instead of SSH ensuring safe connectivity without compromising on security. It provides a centralized way to configure and monitor multiple VyOS routers, with features for NAT, firewalls, interfaces, logging, performance monitoring, and more. The project aims to simplify multi-router management, providing a more integrated and user-friendly approach than managing routers individually via CLI.
 
 ---
 
