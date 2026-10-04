@@ -1,5 +1,4 @@
-# ⚠️ This project has been migrated to [https://github.com/Community-VyProjects/FastAPI-Vyos](https://github.com/Community-VyProjects/VyManager)
-(under organization now, with a better codeabse)
+# ⚠️ This project has been migrated to [https://github.com/Community-VyProjects/VyManager](https://github.com/Community-VyProjects/VyManager)
 
 # VyConnect - VyOS Multi-Router UI Controller
 
